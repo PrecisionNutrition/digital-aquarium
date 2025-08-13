@@ -33,17 +33,18 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
               </Box>
             }
             secondary={
-              <Box component="span" className="flex items-center gap-2 mt-1">
+              <>
                 <Chip
                   label={formatCategory(activity.category)}
                   size="small"
                   color={getCategoryColor(activity.category)}
                   className="h-5"
+                  component="span"
                 />
-                <Typography component="span" variant="caption" className="text-gray-500">
+                <Typography component="span" variant="caption" className="text-gray-500 ml-2">
                   {formatTime(activity.timestamp)}
                 </Typography>
-              </Box>
+              </>
             }
           />
         </ListItem>
