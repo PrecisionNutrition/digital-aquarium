@@ -8,8 +8,13 @@ const electronAPI = {
 
   // Activity monitoring
   getActivityData: () => ipcRenderer.invoke('get-activity-data'),
-  onActivityUpdate: (callback: (data: { activities?: Activity[]; workLifeBalance?: number }) => void) => {
-    const subscription = (_event: Electron.IpcRendererEvent, data: { activities?: Activity[]; workLifeBalance?: number }) => callback(data);
+  onActivityUpdate: (
+    callback: (data: { activities?: Activity[]; workLifeBalance?: number }) => void
+  ) => {
+    const subscription = (
+      _event: Electron.IpcRendererEvent,
+      data: { activities?: Activity[]; workLifeBalance?: number }
+    ) => callback(data);
     ipcRenderer.on('activity-update', subscription);
 
     // Return cleanup function

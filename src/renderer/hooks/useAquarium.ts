@@ -25,7 +25,7 @@ export function useAquarium() {
       if (data.workLifeBalance !== undefined) {
         setAquariumState(prev => ({
           ...prev,
-          workLifeBalance: data.workLifeBalance
+          workLifeBalance: data.workLifeBalance!
         }));
       }
     });
@@ -44,7 +44,7 @@ export function useAquarium() {
       if (data.workLifeBalance !== undefined) {
         setAquariumState(prev => ({
           ...prev,
-          workLifeBalance: data.workLifeBalance
+          workLifeBalance: data.workLifeBalance!
         }));
       }
     } catch (error) {
