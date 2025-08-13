@@ -94,25 +94,25 @@ The Digital Aquarium desktop application has been successfully set up with a mod
 ## Development Commands
 ```bash
 # Install dependencies
-npm install
+yarn install
 
 # Run development server
-npm run dev
+yarn dev
 
 # Run tests
-npm test
+yarn test
 
 # Run tests with coverage
-npm run test:coverage
+yarn test:coverage
 
 # Build for production
-npm run build
+yarn build
 
 # Run linting
-npm run lint
+yarn lint
 
 # Format code
-npm run format
+yarn format
 ```
 
 ## Architecture Decisions

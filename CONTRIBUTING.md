@@ -45,8 +45,8 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 2. **Branch**: Create a feature branch from `develop`
 3. **Code**: Write your code following our standards
 4. **Test**: Write tests for your code
-5. **Lint**: Run `npm run lint` and fix any issues
-6. **Format**: Run `npm run format` to ensure consistent formatting
+5. **Lint**: Run `yarn lint` and fix any issues
+6. **Format**: Run `yarn format` to ensure consistent formatting
 7. **Commit**: Use [conventional commits](https://www.conventionalcommits.org/)
 8. **Push**: Push your branch and create a PR
 

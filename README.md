@@ -28,7 +28,7 @@ Digital Aquarium is a desktop application that visualizes your computer usage as
 
 ### Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 18+ and yarn
 - Git
 
 ### Development Setup
@@ -39,16 +39,16 @@ git clone https://github.com/precisionnutrition/digital-aquarium.git
 cd digital-aquarium
 
 # Install dependencies
-npm install
+yarn install
 
 # Start development server
-npm run dev
+yarn dev
 
 # Run tests
-npm test
+yarn test
 
 # Build for production
-npm run build
+yarn build
 ```
 
 ## Project Structure

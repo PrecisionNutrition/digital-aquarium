@@ -12,10 +12,10 @@ describe('ComponentName', () => {
   it('should do something specific', () => {
     // Arrange
     const props = { ... };
-    
+
     // Act
     render(<Component {...props} />);
-    
+
     // Assert
     expect(screen.getByText('...')).toBeInTheDocument();
   });
