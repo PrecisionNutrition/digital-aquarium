@@ -55,6 +55,6 @@ electron-builder.yml
 ehthumbs.db
 Thumbs.db
 
-# Package manager locks (we'll commit package-lock.json)
-yarn.lock
+# Package manager locks (we'll commit yarn.lock)
+package-lock.json
 pnpm-lock.yaml
