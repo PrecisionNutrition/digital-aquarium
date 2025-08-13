@@ -18,13 +18,14 @@ export function updateFishPositions(
 
     // Boundary collision detection
     const margin = fish.size;
-    
+
     if (newX < margin || newX > width - margin) {
       newVelX = -newVelX; // Reverse horizontal direction
       newX = Math.max(margin, Math.min(width - margin, newX));
     }
-    
-    if (newY < margin || newY > height - margin - 20) { // Account for sand
+
+    if (newY < margin || newY > height - margin - 20) {
+      // Account for sand
       newVelY = -newVelY; // Reverse vertical direction
       newY = Math.max(margin, Math.min(height - margin - 20, newY));
     }
@@ -60,18 +61,13 @@ export function updateFishPositions(
 }
 
 // Helper function to spawn a new fish
-export function spawnFish(
-  x: number,
-  y: number,
-  type: string,
-  activityId: string
-): Fish {
+export function spawnFish(x: number, y: number, type: string, activityId: string): Fish {
   const fishColors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b', '#eb4d4b'];
   const randomColor = fishColors[Math.floor(Math.random() * fishColors.length)];
-  
+
   return {
     id: `fish-${Date.now()}-${Math.random()}`,
-    type: type as any, // Will be properly typed when we implement FishType
+    type: type as Fish['type'],
     name: `Fish from ${type}`,
     position: { x, y },
     velocity: {

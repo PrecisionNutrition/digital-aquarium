@@ -43,8 +43,8 @@ async function createWindow() {
 
 // Security: Prevent new window creation
 app.on('web-contents-created', (_, contents) => {
-  contents.on('new-window', (event) => {
-    event.preventDefault();
+  contents.setWindowOpenHandler(() => {
+    return { action: 'deny' };
   });
 });
 
@@ -52,7 +52,7 @@ app.on('web-contents-created', (_, contents) => {
 app.whenReady().then(async () => {
   // Set up IPC handlers before creating window
   setupIpcHandlers();
-  
+
   await createWindow();
 
   app.on('activate', async () => {
@@ -90,7 +90,7 @@ function setupIpcHandlers() {
 }
 
 // Error handling
-process.on('uncaughtException', (error) => {
+process.on('uncaughtException', error => {
   console.error('Uncaught Exception:', error);
   // In production, we would send this to a crash reporter
   // For now, we fail hard as per requirements

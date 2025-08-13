@@ -10,7 +10,7 @@ jobs:
   test:
     name: Test on macOS
     runs-on: macos-latest
-    
+
     strategy:
       matrix:
         node-version: [18.x, 20.x]

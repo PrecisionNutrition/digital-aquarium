@@ -21,7 +21,7 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
 
   return (
     <List className="overflow-y-auto max-h-96">
-      {recentActivities.map((activity) => (
+      {recentActivities.map(activity => (
         <ListItem key={activity.id} className="px-0">
           <ListItemText
             primary={
@@ -29,11 +29,7 @@ export function ActivityFeed({ activities }: ActivityFeedProps) {
                 <Typography variant="body2" className="font-medium">
                   {activity.name}
                 </Typography>
-                <Chip
-                  label={formatDuration(activity.duration)}
-                  size="small"
-                  variant="outlined"
-                />
+                <Chip label={formatDuration(activity.duration)} size="small" variant="outlined" />
               </Box>
             }
             secondary={
@@ -75,7 +71,9 @@ function formatTime(timestamp: Date): string {
   });
 }
 
-function getCategoryColor(category: ActivityCategory): 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' {
+function getCategoryColor(
+  category: ActivityCategory
+): 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' {
   switch (category) {
     case 'work':
       return 'primary';

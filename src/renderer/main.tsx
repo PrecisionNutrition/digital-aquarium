@@ -9,15 +9,15 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#1890ff',
+      main: '#1890ff'
     },
     secondary: {
-      main: '#40a9ff',
+      main: '#40a9ff'
     },
     background: {
       default: '#f0f2f5',
-      paper: '#ffffff',
-    },
+      paper: '#ffffff'
+    }
   },
   typography: {
     fontFamily: [
@@ -27,12 +27,12 @@ const theme = createTheme({
       'Roboto',
       '"Helvetica Neue"',
       'Arial',
-      'sans-serif',
-    ].join(','),
+      'sans-serif'
+    ].join(',')
   },
   shape: {
-    borderRadius: 8,
-  },
+    borderRadius: 8
+  }
 });
 
 // Get root element

@@ -18,10 +18,8 @@ function App() {
   return (
     <Box className="h-screen flex flex-col bg-gray-50">
       {/* Title bar for macOS */}
-      {systemInfo?.platform === 'darwin' && (
-        <Box className="drag-region h-8 bg-transparent" />
-      )}
-      
+      {systemInfo?.platform === 'darwin' && <Box className="drag-region h-8 bg-transparent" />}
+
       {/* App Bar */}
       <AppBar position="static" elevation={0} className="bg-white border-b">
         <Toolbar>

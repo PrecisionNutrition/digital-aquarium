@@ -24,27 +24,27 @@ describe('ActivityFeed', () => {
 
   it('should display empty state when no activities', () => {
     render(<ActivityFeed activities={[]} />);
-    
+
     expect(screen.getByText('No activities recorded yet')).toBeInTheDocument();
   });
 
   it('should display activities', () => {
     render(<ActivityFeed activities={mockActivities} />);
-    
+
     expect(screen.getByText('Visual Studio Code')).toBeInTheDocument();
     expect(screen.getByText('Slack')).toBeInTheDocument();
   });
 
   it('should display activity durations', () => {
     render(<ActivityFeed activities={mockActivities} />);
-    
+
     expect(screen.getByText('1h 0m')).toBeInTheDocument(); // 3600 seconds
     expect(screen.getByText('5m')).toBeInTheDocument(); // 300 seconds
   });
 
   it('should display activity categories', () => {
     render(<ActivityFeed activities={mockActivities} />);
-    
+
     expect(screen.getByText('Work')).toBeInTheDocument();
     expect(screen.getByText('Communication')).toBeInTheDocument();
   });
@@ -57,9 +57,9 @@ describe('ActivityFeed', () => {
       duration: 45,
       timestamp: new Date()
     };
-    
+
     render(<ActivityFeed activities={[shortActivity]} />);
-    
+
     expect(screen.getByText('45s')).toBeInTheDocument();
   });
 
@@ -71,9 +71,9 @@ describe('ActivityFeed', () => {
       duration: 100,
       timestamp: new Date()
     }));
-    
+
     render(<ActivityFeed activities={manyActivities} />);
-    
+
     // Should show only last 10 activities
     expect(screen.queryByText('Activity 0')).not.toBeInTheDocument();
     expect(screen.queryByText('Activity 4')).not.toBeInTheDocument();

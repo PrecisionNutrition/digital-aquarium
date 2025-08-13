@@ -13,27 +13,30 @@ export function AquariumCanvas({ state }: AquariumCanvasProps) {
   const animationFrameRef = useRef<number>();
   const lastTimeRef = useRef<number>(0);
 
-  const animate = useCallback((currentTime: number) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+  const animate = useCallback(
+    (currentTime: number) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
 
-    // Calculate delta time
-    const deltaTime = lastTimeRef.current ? (currentTime - lastTimeRef.current) / 1000 : 0;
-    lastTimeRef.current = currentTime;
+      // Calculate delta time
+      const deltaTime = lastTimeRef.current ? (currentTime - lastTimeRef.current) / 1000 : 0;
+      lastTimeRef.current = currentTime;
 
-    // Update fish positions
-    const updatedState = updateFishPositions(state, deltaTime, canvas.width, canvas.height);
+      // Update fish positions
+      const updatedState = updateFishPositions(state, deltaTime, canvas.width, canvas.height);
 
-    // Clear and redraw
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawAquarium(ctx, updatedState, canvas.width, canvas.height);
+      // Clear and redraw
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawAquarium(ctx, updatedState, canvas.width, canvas.height);
 
-    // Continue animation
-    animationFrameRef.current = requestAnimationFrame(animate);
-  }, [state]);
+      // Continue animation
+      animationFrameRef.current = requestAnimationFrame(animate);
+    },
+    [state]
+  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -67,7 +70,7 @@ export function AquariumCanvas({ state }: AquariumCanvasProps) {
       <canvas
         ref={canvasRef}
         className="w-full h-full rounded-lg"
-        style={{ 
+        style={{
           background: 'linear-gradient(to bottom, #87CEEB 0%, #4682B4 100%)',
           cursor: 'pointer'
         }}

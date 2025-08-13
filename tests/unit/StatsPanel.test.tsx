@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { StatsPanel } from '@renderer/components/ui/StatsPanel';
+import { FishType } from '@shared/types';
 import type { AquariumState } from '@shared/types';
 
 describe('StatsPanel', () => {
@@ -8,7 +9,7 @@ describe('StatsPanel', () => {
     fish: [
       {
         id: '1',
-        type: 'goldfish' as any,
+        type: FishType.GOLDFISH,
         name: 'Test Fish',
         position: { x: 50, y: 50 },
         velocity: { x: 1, y: 1 },
@@ -52,7 +53,7 @@ describe('StatsPanel', () => {
 
   it('should show correct health status for different balance levels', () => {
     const { rerender } = render(<StatsPanel metrics={mockMetrics} />);
-    
+
     // Test different balance levels
     const testCases = [
       { balance: 0.9, expected: 'Excellent' },

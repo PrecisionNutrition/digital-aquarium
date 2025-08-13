@@ -38,14 +38,15 @@ export function StatsPanel({ metrics }: StatsPanelProps) {
 
   return (
     <Box className="space-y-3">
-      {stats.map((stat) => (
+      {stats.map(stat => (
         <Box key={stat.label}>
           <Box className="flex justify-between mb-1">
             <Typography variant="body2" className="text-gray-600">
               {stat.label}
             </Typography>
             <Typography variant="body2" className="font-medium">
-              {Math.round(stat.value)}{stat.unit || ''}
+              {Math.round(stat.value)}
+              {stat.unit || ''}
             </Typography>
           </Box>
           <LinearProgress
@@ -56,7 +57,7 @@ export function StatsPanel({ metrics }: StatsPanelProps) {
           />
         </Box>
       ))}
-      
+
       <Box className="pt-3 mt-3 border-t">
         <Typography variant="body2" className="text-gray-600 mb-1">
           Aquarium Health

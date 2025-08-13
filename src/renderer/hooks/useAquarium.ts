@@ -18,7 +18,7 @@ export function useAquarium() {
     loadActivityData();
 
     // Subscribe to activity updates
-    const unsubscribe = window.electronAPI.onActivityUpdate((data) => {
+    const unsubscribe = window.electronAPI.onActivityUpdate(data => {
       if (data.activities) {
         setActivities(data.activities);
       }
