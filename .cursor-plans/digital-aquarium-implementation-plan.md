@@ -21,7 +21,7 @@ Since this is a greenfield project, we'll establish a clean architecture that su
 - **Styling**: Material UI + Tailwind CSS (as per user preference)
 - **Testing**: Vitest for unit/integration tests, Playwright for E2E
 - **CI/CD**: GitHub Actions for automated testing and releases
-- **Package Manager**: npm (for consistency with Electron ecosystem)
+- **Package Manager**: yarn (for better dependency management and lockfile consistency)
 
 ### Architecture Patterns
 - **Clean Architecture**: Separation between business logic and UI
@@ -98,7 +98,7 @@ digital-aquarium/
 1. Initialize git repository
 2. Create initial directory structure
 3. Set up .gitignore with Electron/Node patterns
-4. Initialize npm project with appropriate metadata
+4. Initialize yarn project with appropriate metadata
 
 #### Step 2: Core Dependencies Setup
 1. Install Electron and development dependencies
