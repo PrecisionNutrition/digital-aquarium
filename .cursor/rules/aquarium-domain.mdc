@@ -1,0 +1,60 @@
+---
+globs: **/aquarium/**,**/fish/**,**/activity/**
+---
+# Aquarium Domain Logic
+
+## Core Concepts
+
+### Fish
+- Represent different applications/activities
+- Each fish has: type, position, velocity, health, color, size
+- Fish movement uses simple 2D physics with boundary collision
+- Fish health reflects how recently the app was used
+
+### Activities
+- Tracked computer activities spawn fish
+- Categories: work, communication, entertainment, productivity, learning, other
+- Duration and frequency affect fish size and health
+
+### Aquarium State
+- Water quality: Overall system health
+- Temperature: Activity intensity
+- Light level: Time of day factor
+- Work-life balance: Core metric (0-1)
+
+## 2D Rendering (Canvas)
+The aquarium uses 2D Canvas rendering, not 3D:
+- Canvas context in [AquariumCanvas.tsx](mdc:src/renderer/components/aquarium/AquariumCanvas.tsx)
+- Drawing functions in [drawing.ts](mdc:src/renderer/components/aquarium/drawing.ts)
+- Physics simulation in [physics.ts](mdc:src/renderer/components/aquarium/physics.ts)
+
+## Physics Rules
+```typescript
+// Fish bounce off boundaries
+if (fish.x < margin || fish.x > width - margin) {
+  fish.velocity.x = -fish.velocity.x;
+}
+
+// Add random movement for natural behavior
+fish.velocity.x += (Math.random() - 0.5) * randomFactor;
+
+// Limit maximum speed
+const speed = Math.sqrt(vx * vx + vy * vy);
+if (speed > maxSpeed) {
+  fish.velocity = normalize(fish.velocity) * maxSpeed;
+}
+```
+
+## Work-Life Balance Calculation
+- Work apps (IDE, terminals) decrease balance when used excessively
+- Break time and entertainment increase balance
+- Balance affects:
+  - Aquarium water clarity (visual effect)
+  - Fish health regeneration rate
+  - Spawning of special "happy" fish
+
+## Visual Indicators
+- Healthy aquarium: Clear water, active fish, bubbles
+- Unhealthy: Murky water, slow fish, fewer bubbles
+- Fish glow when their app is currently active
+- Red outline on fish with low health

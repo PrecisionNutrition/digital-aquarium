@@ -1,0 +1,91 @@
+---
+alwaysApply: true
+---
+# CRITICAL: Fail Hard Error Handling Policy
+
+This project follows a STRICT fail-hard policy. Silent failures are unacceptable.
+
+## ✅ REQUIRED Error Handling
+
+### Throw Meaningful Exceptions
+```typescript
+async function loadData(): Promise<Data> {
+  const response = await fetch('/api/data');
+  if (!response.ok) {
+    throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
+  }
+  return response.json();
+}
+```
+
+### Validate Inputs and Fail Fast
+```typescript
+function createFish(type: FishType, activity: Activity): Fish {
+  if (!isValidFishType(type)) {
+    throw new Error(`Invalid fish type: ${type}`);
+  }
+  if (!activity.name || !activity.category) {
+    throw new Error('Activity must have name and category');
+  }
+  // ... continue with valid data
+}
+```
+
+### Let Errors Propagate
+```typescript
+// Don't catch unless you're adding context or cleaning up
+async function processActivity(activity: Activity) {
+  validateActivity(activity); // Throws if invalid
+  const fish = createFish(activity.type, activity); // Throws if creation fails
+  await saveFish(fish); // Let save errors propagate
+}
+```
+
+## ❌ FORBIDDEN Patterns
+
+### No Silent Catch Blocks
+```typescript
+// NEVER DO THIS
+try {
+  doSomething();
+} catch (e) {
+  console.log(e); // Just logging is NOT handling
+}
+```
+
+### No Fallback Values for Failures
+```typescript
+// NEVER DO THIS
+async function getData() {
+  try {
+    return await fetchData();
+  } catch {
+    return []; // Don't hide failures with empty data!
+  }
+}
+```
+
+### No Defensive Defaults
+```typescript
+// NEVER DO THIS
+function processValue(value: string | undefined) {
+  const val = value || 'default'; // Don't paper over missing required data
+  // ...
+}
+```
+
+## Exception: Explicit User-Facing Error Boundaries
+
+Only at the UI boundary may you catch and display errors to users:
+```typescript
+// ONLY in error boundary components
+componentDidCatch(error: Error) {
+  this.setState({ hasError: true, error });
+  reportErrorToLogging(error); // But still report it!
+}
+```
+
+## Testing the Fail-Hard Principle
+- Tests should verify that functions throw on invalid input
+- Never change tests to "pass" by removing error checks
+- If a test is failing due to an error, fix the cause, not the test

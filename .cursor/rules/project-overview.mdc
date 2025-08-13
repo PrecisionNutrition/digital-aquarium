@@ -1,0 +1,43 @@
+---
+alwaysApply: true
+---
+# Digital Aquarium Project Overview
+
+This is a desktop application that visualizes computer activity as a virtual aquarium where different fish represent different apps/activities, and the health of your aquarium reflects your work-life balance.
+
+## Technology Stack
+- **Desktop Framework**: Electron (latest stable)
+- **UI Framework**: React 18+ with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Material UI + Tailwind CSS (user preference)
+- **2D Rendering**: Canvas API (not Three.js - user preference for 2D)
+- **Testing**: Vitest with high coverage requirements
+- **Package Manager**: Yarn (not npm)
+
+## Project Structure
+- Main entry point: [src/main/index.ts](mdc:src/main/index.ts) - Electron main process
+- React app entry: [src/renderer/main.tsx](mdc:src/renderer/main.tsx) - Renderer process
+- Shared types: [src/shared/types/index.ts](mdc:src/shared/types/index.ts)
+- Configuration files:
+  - [package.json](mdc:package.json) - Project dependencies and scripts
+  - [vite.config.ts](mdc:vite.config.ts) - Vite build configuration
+  - [vitest.config.ts](mdc:vitest.config.ts) - Test configuration
+  - [.github/workflows/ci.yml](mdc:.github/workflows/ci.yml) - CI/CD pipeline
+
+## Key Commands
+- `yarn dev` - Start the Electron desktop app with hot reload
+- `yarn test` - Run tests in watch mode
+- `yarn check:all` - Run all checks (types, lint, format, tests)
+- `yarn build` - Build for production
+
+## Important Principles
+1. **Local-only**: All data stays on the user's machine, no cloud sync
+2. **Privacy-first**: No telemetry or data collection
+3. **Donationware**: Free to use with optional donations
+4. **macOS Priority**: Primary development target is macOS
+5. **Fail Hard**: All errors should throw exceptions, no silent failures
+
+## CI/CD
+- Uses GitHub Actions with Node.js 20.x only
+- Pre-commit hooks run `yarn check:all` automatically
+- Dependabot monitors security vulnerabilities

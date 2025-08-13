@@ -1,0 +1,53 @@
+---
+globs: *.test.ts,*.test.tsx,*.spec.ts,*.spec.tsx,tests/**/*
+---
+# Testing Guidelines
+
+## Test Framework
+Uses Vitest with React Testing Library. Tests must pass with >50% coverage before committing.
+
+## Test Structure
+```typescript
+describe('ComponentName', () => {
+  it('should do something specific', () => {
+    // Arrange
+    const props = { ... };
+    
+    // Act
+    render(<Component {...props} />);
+    
+    // Assert
+    expect(screen.getByText('...')).toBeInTheDocument();
+  });
+});
+```
+
+## Testing Principles
+1. **Test behavior, not implementation**: Focus on what users see/experience
+2. **Arrange-Act-Assert pattern**: Keep tests organized and readable
+3. **One assertion per test**: Each test should verify one thing
+4. **Descriptive test names**: Should read like documentation
+5. **No snapshot tests**: They're brittle and hard to maintain
+
+## Mocking
+- Canvas API is mocked in [tests/setup.ts](mdc:tests/setup.ts)
+- Electron API is mocked for renderer tests
+- Use `vi.fn()` for function mocks
+- Clear mocks between tests
+
+## Coverage Requirements
+- Minimum 50% line coverage
+- Minimum 50% function coverage
+- Minimum 50% statement coverage
+- Minimum 75% branch coverage
+
+## Test Categories
+- `tests/unit/` - Isolated component and function tests
+- `tests/integration/` - Component interaction tests
+- `tests/e2e/` - Full application flow tests
+
+## Important: NEVER
+- Skip tests because they're "annoying"
+- Change assertions to make tests pass
+- Use `test.skip` without a ticket number
+- Commit with failing tests

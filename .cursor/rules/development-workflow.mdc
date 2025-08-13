@@ -1,0 +1,53 @@
+---
+description: Development workflow and commands for Digital Aquarium
+---
+# Development Workflow
+
+## Setup
+```bash
+# Clone and install
+git clone git@github.com:PrecisionNutrition/digital-aquarium.git
+cd digital-aquarium
+yarn install
+```
+
+## Daily Development
+1. **Start the app**: `yarn dev` - Launches Electron with hot reload
+2. **Run tests**: `yarn test` - Runs in watch mode during development
+3. **Before committing**: Pre-commit hook automatically runs `yarn check:all`
+
+## Available Commands
+- `yarn dev` - Start Electron app with hot reload
+- `yarn build` - Build for production
+- `yarn test` - Run tests in watch mode
+- `yarn test:coverage` - Run tests with coverage report
+- `yarn lint` - Run ESLint
+- `yarn format` - Auto-format code with Prettier
+- `yarn typecheck` - Check TypeScript types
+- `yarn check:all` - Run ALL checks (runs on pre-commit)
+
+## Git Workflow
+1. Create feature branch from `main`
+2. Make changes (pre-commit hook ensures quality)
+3. Push to GitHub
+4. Create PR - CI must pass
+5. Merge to main
+
+## Adding Dependencies
+Always use yarn, never npm:
+```bash
+yarn add package-name          # Production dependency
+yarn add -D package-name       # Dev dependency
+```
+
+## Debugging
+- Electron DevTools open automatically in dev mode
+- React DevTools work in the renderer process
+- Main process logs appear in terminal
+- Use Chrome DevTools for debugging
+
+## Common Issues
+- **Canvas errors in tests**: Already mocked in test setup
+- **Module not found**: Check tsconfig paths and restart dev server
+- **Electron not starting**: Kill all node processes and try again
+- **Pre-commit failing**: Run `yarn check:all` to see specific errors

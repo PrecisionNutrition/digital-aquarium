@@ -1,0 +1,51 @@
+---
+globs: *.ts,*.tsx
+---
+# TypeScript and React Code Style Guide
+
+## Core Principles
+- **DRY (Don't Repeat Yourself)**: Extract shared logic into reusable components/functions
+- **KISS (Keep It Simple)**: Avoid unnecessary complexity
+- **SOLID Principles**: Design modular, scalable code
+- **Separation of Concerns**: Isolate UI, business logic, and data layers
+- **Single Responsibility**: Each file should have ONE clear purpose
+
+## TypeScript Requirements
+- Strict mode is enabled - no `any` types without explicit reason
+- All functions should have proper type annotations
+- Use interfaces for object shapes, types for unions/primitives
+- Prefer `interface` over `type` for object definitions
+
+## React Best Practices
+- Use functional components with hooks
+- Keep components small and focused
+- Extract complex logic into custom hooks
+- Use Material UI components with Tailwind for styling
+- Components go in `src/renderer/components/`
+
+## Error Handling - FAIL HARD Policy
+```typescript
+// ✅ CORRECT: Throw meaningful exceptions
+if (!isValid) {
+  throw new Error('Validation failed: specific reason');
+}
+
+// ❌ WRONG: Silent failures or fallbacks
+try {
+  doSomething();
+} catch (e) {
+  console.log(e); // Don't just log!
+  return null; // Don't return fallback values!
+}
+```
+
+## File Organization
+- One component per file
+- Group related functionality in directories
+- Use barrel exports (index.ts) for clean imports
+- Separate business logic from UI components
+
+## Imports
+- Use absolute imports with aliases (@/, @renderer/, @main/, @shared/)
+- Group imports: external libs, internal modules, types, styles
+- Sort imports alphabetically within groups

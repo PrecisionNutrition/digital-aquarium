@@ -1,0 +1,47 @@
+---
+globs: .github/**,*.yml,*.yaml,electron-builder.yml
+---
+# CI/CD and Deployment Configuration
+
+## GitHub Actions CI
+- Runs on every push and PR to main
+- Uses Node.js 20.x ONLY (latest LTS)
+- Tests run on macOS (primary target platform)
+
+## CI Pipeline Steps
+1. Checkout code
+2. Setup Node.js with yarn cache
+3. Install dependencies: `yarn install --frozen-lockfile`
+4. Type check: `yarn typecheck`
+5. Lint: `yarn lint`
+6. Test with coverage: `yarn test:coverage`
+7. Upload coverage to Codecov
+8. Build application: `yarn build`
+
+## Security
+- Dependabot monitors and creates PRs for vulnerabilities
+- `yarn audit` is NOT run in CI (fails on any vulnerability)
+- Security issues are tracked via GitHub Security tab
+
+## Electron Builder Configuration
+Located in package.json `build` section:
+- App ID: `com.precisionnutrition.digitalaquarium`
+- macOS: Builds universal binary (x64 + arm64)
+- Windows: NSIS installer
+- Linux: AppImage
+
+## Release Process (Future)
+1. Version bump in package.json
+2. Create git tag
+3. Push tag triggers release build
+4. Electron Builder creates installers
+5. Auto-update via electron-updater
+
+## Environment Variables
+- `GH_TOKEN`: Required for electron-builder publish
+- `NODE_ENV`: Set to 'production' for builds
+
+## Important Files
+- [.github/workflows/ci.yml](mdc:.github/workflows/ci.yml) - CI configuration
+- [package.json](mdc:package.json) - Build configuration in "build" section
+- [electron-builder.yml](mdc:electron-builder.yml) - Extended build config (if needed)
